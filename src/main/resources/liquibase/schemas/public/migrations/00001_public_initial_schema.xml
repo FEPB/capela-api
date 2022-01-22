@@ -1,0 +1,60 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="1631241792514-0" author="victorximenis">
+        <sql>
+            CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+        </sql>
+    </changeSet>
+
+    <changeSet author="victorximenis" id="1631241792515-2">
+
+        <preConditions onFail="CONTINUE">
+            <not>
+                <tableExists tableName="clients"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="clients">
+            <column defaultValueComputed="${uuid_function}" name="id" type="${uuid_type}">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="clients_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_at" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="updated_at" type="TIMESTAMP WITHOUT TIME ZONE"/>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="clients"/>
+        </rollback>
+
+    </changeSet>
+
+    <changeSet author="victorximenis" id="20211007195500000">
+
+        <preConditions onFail="CONTINUE">
+            <not>
+                <columnExists tableName="clients" columnName="schema_name"/>
+            </not>
+        </preConditions>
+
+        <addColumn tableName="clients">
+            <column name="schema_name" type="VARCHAR">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+
+        <insert tableName="clients">
+            <column name="name" value="Default Client"/>
+            <column name="schema_name" value="default"/>
+        </insert>
+
+        <rollback>
+            <dropColumn tableName="clients" columnName="schema_name"></dropColumn>
+        </rollback>
+
+    </changeSet>
+
+</databaseChangeLog>

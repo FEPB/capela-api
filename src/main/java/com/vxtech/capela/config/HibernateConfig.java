@@ -41,7 +41,7 @@ public class HibernateConfig {
 
         LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
         entityManager.setDataSource(dataSource);
-        entityManager.setPackagesToScan("com.smileandgo.identity.*");
+        entityManager.setPackagesToScan("com.vxtech.capela.*");
         entityManager.setJpaVendorAdapter(jpaVendorAdapter());
         entityManager.setJpaPropertyMap(properties);
         return entityManager;
