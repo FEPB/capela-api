@@ -17,7 +17,7 @@ public class ExceptionResponseDTO {
         this.message = message;
         this.errors = errors;
         this.path = path;
-        this.errorCode = null;
+        this.errorCode = "CA0000";
     }
 
     public ExceptionResponseDTO(Date timestamp, String path, String message, List<ErrorResponseDTO> errors, String errorCode) {

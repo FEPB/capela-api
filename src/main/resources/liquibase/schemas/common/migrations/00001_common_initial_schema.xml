@@ -22,6 +22,12 @@
             <column name="nome" type="VARCHAR">
                 <constraints nullable="false"/>
             </column>
+            <column name="genero" type="VARCHAR">
+                <constraints nullable="false"/>
+            </column>
+            <column name="data_nascimento" type="DATE">
+                <constraints nullable="true"/>
+            </column>
             <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_at" type="TIMESTAMP WITH TIME ZONE"/>
             <column name="updated_at" type="TIMESTAMP WITHOUT TIME ZONE"/>
         </createTable>
@@ -30,6 +36,50 @@
         	<dropTable tableName="pessoas"/>
         </rollback> 
         
+    </changeSet>
+
+    <changeSet author="victorximenis" id="20211007215800000-2">
+
+        <preConditions onFail="CONTINUE">
+            <not>
+                <tableExists tableName="inscricoes"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="inscricoes">
+            <column defaultValueComputed="${uuid_function}" name="id" type="${uuid_type}">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="inscricoes_pkey"/>
+            </column>
+            <column name="pessoa_id" type="${uuid_type}">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="false" name="confirmado" type="BOOLEAN">
+                <constraints nullable="false" />
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_at" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="updated_at" type="TIMESTAMP WITHOUT TIME ZONE"/>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="inscricoes"/>
+        </rollback>
+
+    </changeSet>
+
+    <changeSet author="victorximenis" id="20211007215800000-3">
+
+        <preConditions onFail="CONTINUE">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_pessoa_id" foreignKeyTableName="inscricoes"/>
+            </not>
+        </preConditions>
+
+        <addForeignKeyConstraint baseColumnNames="pessoa_id" baseTableName="inscricoes" constraintName="fk_pessoa_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="pessoas" validate="true" />
+
+        <rollback>
+            <dropForeignKeyConstraint constraintName="fk_pessoa_id" baseTableName="inscricoes"/>
+        </rollback>
+
     </changeSet>
     
 </databaseChangeLog>
