@@ -48,7 +48,7 @@
 
         <insert tableName="clients">
             <column name="name" value="Default Client"/>
-            <column name="schema_name" value="default"/>
+            <column name="schema_name" value="client"/>
         </insert>
 
         <rollback>
