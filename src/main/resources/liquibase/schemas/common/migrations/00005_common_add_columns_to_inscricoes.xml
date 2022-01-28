@@ -1,0 +1,164 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet author="victorximenis" id="20220127203800000-0">
+
+        <preConditions onFail="CONTINUE">
+            <not>
+                <columnExists tableName="inscricoes" columnName="trabalhador" />
+            </not>
+        </preConditions>
+
+        <addColumn tableName="inscricoes">
+            <column defaultValueBoolean="false" name="trabalhador" type="BOOLEAN">
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+
+        <rollback>
+            <dropColumn tableName="inscricoes" columnName="trabalhador" />
+        </rollback>
+
+    </changeSet>
+
+    <changeSet author="victorximenis" id="20220127203800000-1">
+
+        <preConditions onFail="CONTINUE">
+            <not>
+                <columnExists tableName="inscricoes" columnName="telefone" />
+            </not>
+        </preConditions>
+
+        <addColumn tableName="inscricoes">
+            <column name="telefone" type="VARCHAR">
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+
+        <rollback>
+            <dropColumn tableName="inscricoes" columnName="telefone" />
+        </rollback>
+
+    </changeSet>
+
+    <changeSet author="victorximenis" id="20220127203800000-3">
+
+        <preConditions onFail="CONTINUE">
+            <not>
+                <columnExists tableName="inscricoes" columnName="instituicao" />
+            </not>
+        </preConditions>
+
+        <addColumn tableName="inscricoes">
+            <column name="instituicao" type="VARCHAR">
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+
+        <rollback>
+            <dropColumn tableName="inscricoes" columnName="instituicao" />
+        </rollback>
+
+    </changeSet>
+
+    <changeSet author="victorximenis" id="20220127203800000-4">
+
+        <preConditions onFail="CONTINUE">
+            <not>
+                <columnExists tableName="inscricoes" columnName="email" />
+            </not>
+        </preConditions>
+
+        <addColumn tableName="inscricoes">
+            <column name="email" type="VARCHAR">
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+
+        <rollback>
+            <dropColumn tableName="inscricoes" columnName="email" />
+        </rollback>
+
+    </changeSet>
+
+    <changeSet author="victorximenis" id="20220127203800000-5">
+
+        <preConditions onFail="CONTINUE">
+            <not>
+                <columnExists tableName="inscricoes" columnName="nome_coordenador" />
+            </not>
+        </preConditions>
+
+        <addColumn tableName="inscricoes">
+            <column name="nome_coordenador" type="VARCHAR">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+
+        <rollback>
+            <dropColumn tableName="inscricoes" columnName="nome_coordenador" />
+        </rollback>
+
+    </changeSet>
+
+    <changeSet author="victorximenis" id="20220127203800000-6">
+
+        <preConditions onFail="CONTINUE">
+            <not>
+                <columnExists tableName="inscricoes" columnName="email_coordenador" />
+            </not>
+        </preConditions>
+
+        <addColumn tableName="inscricoes">
+            <column name="email_coordenador" type="VARCHAR">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+
+        <rollback>
+            <dropColumn tableName="inscricoes" columnName="email_coordenador" />
+        </rollback>
+
+    </changeSet>
+
+    <changeSet author="victorximenis" id="20220127203800000-7">
+
+        <preConditions onFail="CONTINUE">
+            <not>
+                <columnExists tableName="inscricoes" columnName="restricao_saude" />
+            </not>
+        </preConditions>
+
+        <addColumn tableName="inscricoes">
+            <column name="restricao_saude" type="VARCHAR">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+
+        <rollback>
+            <dropColumn tableName="inscricoes" columnName="restricao_saude" />
+        </rollback>
+
+    </changeSet>
+
+    <changeSet author="victorximenis" id="20220127203800000-8">
+
+        <preConditions onFail="CONTINUE">
+            <not>
+                <columnExists tableName="inscricoes" columnName="restricao_alimentar" />
+            </not>
+        </preConditions>
+
+        <addColumn tableName="inscricoes">
+            <column name="restricao_alimentar" type="VARCHAR">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+
+        <rollback>
+            <dropColumn tableName="inscricoes" columnName="restricao_alimentar" />
+        </rollback>
+
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,31 +1,30 @@
 package com.vxtech.capela.web.rest.dto;
 
-import com.vxtech.capela.enums.SexoEnum;
-import com.vxtech.capela.enums.TipoSanguineoEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PessoaDTO {
+public class OficinaDTO {
 
     private UUID id;
 
     @NotBlank
-    private String nome;
-    private String nomeCracha;
-    private TipoSanguineoEnum tipoSanguineo;
+    private String descricao;
 
     @NotNull
-    private LocalDateTime dataNascimento;
+    private LocalDate data;
 
     @NotNull
-    private SexoEnum genero;
+    @Min(0)
+    private Integer vagas;
 
 }

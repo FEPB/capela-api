@@ -76,8 +76,8 @@ public class ControllerExceptionHandler {
      public ResponseEntity<ExceptionResponseDTO> handleAll(Exception exception, HttpServletRequest request) {
 
           log.error(exception);
-          ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO("", exception.getLocalizedMessage());
-          ExceptionResponseDTO responseDTO = new ExceptionResponseDTO(new Date(), request.getRequestURI(), exception.getMessage(), List.of(errorResponseDTO));
+          ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO("", exception.getCause().getMessage());
+          ExceptionResponseDTO responseDTO = new ExceptionResponseDTO(new Date(), request.getRequestURI(), exception.getCause().getMessage(), List.of(errorResponseDTO));
           return new ResponseEntity<>(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
      }
 

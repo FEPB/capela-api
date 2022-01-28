@@ -20,6 +20,18 @@ public enum ExceptionEnum {
      */
 
     GLOBAL_ERROR(INTERNAL_SERVER_ERROR, ServerInternalErrorException.class,"0001"),
+    GLOBAL_INCONSISTENCIA_CADASTRAL_ERROR(INTERNAL_SERVER_ERROR, ServerInternalErrorException.class, "0002"),
+
+    /**
+     * Oficina Exceptions
+     */
+    OFICINA_NAO_ENCONTRADA(NOT_FOUND, NotFoundException.class, "1000"),
+
+    /**
+     * Inscricao Exceptions
+     */
+    INSCRICAO_NAO_ENCONTRADA(NOT_FOUND, NotFoundException.class, "2000"),
+    INSCRICAO_SEM_ID(BAD_REQUEST, BadRequestException.class, "2001"),
     ;
     
     @Getter

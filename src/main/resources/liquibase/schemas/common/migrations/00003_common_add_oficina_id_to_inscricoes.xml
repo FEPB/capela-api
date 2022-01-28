@@ -1,0 +1,45 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet author="victorximenis" id="20220126193800000-0">
+
+        <preConditions onFail="CONTINUE">
+            <not>
+                <columnExists tableName="inscricoes" columnName="oficina_id" />
+            </not>
+        </preConditions>
+
+        <addColumn tableName="inscricoes">
+            <column name="oficina_id" type="${uuid_type}">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+
+        <rollback>
+            <dropColumn tableName="inscricoes" columnName="oficina_id" />
+        </rollback>
+
+    </changeSet>
+
+    <changeSet author="victorximenis" id="20220126193800000-1">
+
+        <preConditions onFail="CONTINUE">
+            <columnExists tableName="inscricoes" columnName="oficina_id" />
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_inscricoes_oficina_id" foreignKeyTableName="inscricoes" />
+            </not>
+        </preConditions>
+
+        <addForeignKeyConstraint baseTableName="inscricoes" baseColumnNames="oficina_id"
+                                 constraintName="fk_inscricoes_oficina_id"
+                                 referencedTableName="oficinas"
+                                 referencedColumnNames="id"
+                                 validate="true"
+                                 onDelete="NO ACTION"
+                                 onUpdate="NO ACTION" />
+
+    </changeSet>
+
+
+
+</databaseChangeLog>

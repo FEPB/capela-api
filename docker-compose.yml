@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   postgres:
-    image: bitnami/postgresql:11.12.0-debian-10-r44
+    image: postgres:14.1
     container_name: capela_postgres
     environment:
       - POSTGRES_DB=capela

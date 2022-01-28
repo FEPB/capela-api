@@ -14,5 +14,9 @@
     <property name="uuid_function" value="sys_guid()" dbms="oracle"/>
 
     <include file="/liquibase/schemas/common/migrations/00001_common_initial_schema.xml"/>
+    <include file="/liquibase/schemas/common/migrations/00002_common_create_oficinas.xml"/>
+    <include file="/liquibase/schemas/common/migrations/00003_common_add_oficina_id_to_inscricoes.xml"/>
+    <include file="/liquibase/schemas/common/migrations/00004_common_columns_to_pessoas.xml"/>
+    <include file="/liquibase/schemas/common/migrations/00005_common_add_columns_to_inscricoes.xml"/>
 
 </databaseChangeLog>
